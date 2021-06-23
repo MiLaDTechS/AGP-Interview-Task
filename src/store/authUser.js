@@ -18,7 +18,10 @@ const slice = createSlice({
     },
     extraReducers: {
         [loggedOut]: (state, action) => {
-            return {}
+            return {
+                user: {},
+                scores: {}
+            }
         },
     }
 })
