@@ -8,8 +8,11 @@ import { getProjects } from '../store/projects';
 import { FaCog, FaSpinner, FaTimes } from 'react-icons/fa'
 import { useLocalStorage } from '../utils';
 import { getScores } from '../store/authUser';
+import { logout } from '../store/sharedActions';
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const projects = useSelector(state => state.entities.projects);
     const scores = useSelector(state => state.authUser.scores);
@@ -73,7 +76,11 @@ const Home = () => {
                                 <span className="ml-4">تنظیمات</span>
                                 <FaCog color="#888" fontSize="32px" />
                             </li>
-                            <li className="text-gray-600 mb-5 flex justify-end cursor-pointer hover:bg-gray-200 px-2 py-2 rounded-md items-center transition">
+                            <li onClick={() => {
+                                dispatch(logout()).then(() => {
+                                    history.replace('/login')
+                                });
+                            }} className="text-gray-600 mb-5 flex justify-end cursor-pointer hover:bg-gray-200 px-2 py-2 rounded-md items-center transition">
                                 <span className="ml-4">خروج</span>
                                 <img src="/icons/Logout.svg" className="opacity-50" width="32px" height="32px" alt="document" />
                             </li>
@@ -83,7 +90,7 @@ const Home = () => {
 
                 <div className="h-14 flex items-center justify-between relative bg-gray-300">
                     <div className="bg-white rounded-l-full focus:outline-none flex items-center justify-center px-1.5 py-1">
-                        <p className="text-xs leading-3 mx-1" style={{ fontFamily: 'VazirFD' }}>{scores.overall_score}</p>
+                        <p className="text-xs leading-3 mx-1" style={{ fontFamily: 'VazirFD' }}>{scores?.overall_score}</p>
                         <img src="/icons/Star.svg" alt="score" />
                     </div>
 

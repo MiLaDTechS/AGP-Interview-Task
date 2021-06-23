@@ -5,8 +5,8 @@ export const loggedOut = createAction('loggedOut');
 
 // Global Action Creators
 
-export const logout = () => (dispatch) => {
-    localStorage.removeItem('user');
+export const logout = () => async (dispatch) => {
+    localStorage.removeItem(`${process.env.REACT_APP_LS_PREFIX}user`);
     axios.defaults.headers.common['Authorization'] = '';
 
     return dispatch({
