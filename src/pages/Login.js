@@ -37,13 +37,7 @@ const Login = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: .2 }}
         >
-            <Toaster toastOptions={{
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                    fontSize: 12
-                },
-            }} position="top-left" />
+            <Toaster />
             <div className="h-screen flex flex-col justify-center items-center">
 
                 <Formik
