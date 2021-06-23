@@ -19,7 +19,7 @@ const api = ({ dispatch }) => next => action => {
                 data
             });
 
-            if (response.data.status === 404 || response.data.status === 403) {
+            if (response.data.status === 401 || response.data.status === 403 || response.data.status === 404) {
                 throw Error(response.data.detail);
             }
 
